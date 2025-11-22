@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
       >
         
         <img 
-          src="/youngatheartcurators/images/portfolioimage.jpg" 
+          src="/images/portfolioimage.jpg"  // CHANGED: removed /youngatheartcurators/
           alt="Immersive Experience" 
           className={`w-full h-full object-contain transition-all duration-1000 ease-out opacity-90 ${
             isColorRevealed 
