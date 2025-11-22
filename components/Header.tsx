@@ -8,7 +8,6 @@ interface HeaderProps {
 
 const navItems = [
   { label: 'About', id: 'about' },
-  // { label: 'Projects', id: 'projects' },  // Temporarily disabled
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -20,23 +19,25 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
     setIsMobileMenuOpen(false);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-[60] py-8 px-6 md:px-12">
       <div className="container mx-auto flex justify-between items-center">
         
-        {/* Logo */}
         <button onClick={() => handleNavClick('about')} className="flex items-center gap-3 group outline-none">
           <div className="bg-white/10 p-1 rounded-lg backdrop-blur-sm">
             <img 
               src="/images/logo.png"
               alt="Young At Heart Curators Logo"
-              className="w-10 h-10 object-cover rounded-lg transition-transform duration-500 group-hover:rotate-180 shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              className="w-10 h-10 object-cover rounded-lg transition-transform duration-500 group-hover:rotate-180"
             />
           </div>
           <span className="font-display font-bold text-xl tracking-tighter text-white mix-blend-difference">Y.A.H CURATORS</span>
         </button>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-2 bg-black/20 backdrop-blur-md p-1.5 rounded-full border border-white/5">
           {navItems.map((item) => (
             <button 
@@ -53,7 +54,6 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
           ))}
         </nav>
 
-        {/* Mobile Toggle */}
         <button 
           className="md:hidden text-white p-2 bg-black/20 backdrop-blur-md rounded-full border border-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -67,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
         }`}>
            <button 
               className="absolute top-8 right-6 text-white/50 hover:text-white"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
            >
               <X size={32} />
            </button>

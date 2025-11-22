@@ -16,16 +16,18 @@ const Contact: React.FC = () => {
     <div className="h-full w-full flex flex-col items-center justify-center p-8 md:p-12 relative overflow-hidden">
       
       <div className="max-w-4xl w-full text-center z-10">
-        <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-8 leading-[0.95]">
+        
+
+        <h2 className="font-display text-3xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 leading-tight">
           LET'S CREATE <br />
           THE <span className="text-neutral-700">EXTRAORDINARY.</span>
         </h2>
 
-        <div className="flex justify-center h-24 mt-4">
+        <div className="flex justify-center h-20 md:h-24 mt-4">
           {!isRevealed ? (
             <button 
               onClick={() => setIsRevealed(true)}
-              className="group relative px-8 py-4 bg-white text-black font-bold text-sm tracking-widest overflow-hidden rounded-sm transition-all hover:scale-105"
+              className="group relative px-6 py-3 md:px-8 md:py-4 bg-white text-black font-bold text-sm tracking-widest overflow-hidden rounded-sm transition-all hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">
                 START YOUR JOURNEY <ArrowRight size={16} />
@@ -35,8 +37,8 @@ const Contact: React.FC = () => {
           ) : (
             <div className="animate-fade-in flex flex-col items-center gap-4">
               <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 p-1.5 pr-4 rounded-full">
-                 <div className="w-10 h-10 bg-neutral-800 rounded-full flex items-center justify-center text-white">
-                   <Mail size={18} />
+                 <div className="w-8 h-8 md:w-10 md:h-10 bg-neutral-800 rounded-full flex items-center justify-center text-white">
+                   <Mail size={16} />
                  </div>
                  <span className="text-neutral-200 font-mono text-sm md:text-base">{email}</span>
                  <button 
