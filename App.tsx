@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const [activeOverlay, setActiveOverlay] = useState<string | null>(null);
-const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
 
   const handleNavigate = (section: string) => {
     if (section === 'home') {
@@ -35,19 +35,22 @@ const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   };
 
   return (
-    <div className="bg-neutral-950 h-screen w-screen text-white overflow-hidden relative selection:bg-white selection:text-black font-sans">
+    <div className="bg-neutral-950 min-h-screen text-white overflow-x-hidden relative selection:bg-white selection:text-black font-sans">
       
       <Header activeSection={activeOverlay || 'home'} onNavigate={handleNavigate} />
       
-      {/* Main Static Background */}
-      <main className={`h-full w-full relative transition-all duration-700 ${activeOverlay ? 'scale-95 opacity-50 blur-[2px]' : 'scale-100 opacity-100'}`}>
-        <Hero />
+      {/* Main Content Area */}
+      <div className="relative">
+        {/* Hero Section - Full viewport height */}
+        <div className="h-screen">
+          <Hero />
+        </div>
         
-        {/* Fixed Footer at bottom of screen */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 pb-6">
+        {/* Footer - Always visible at bottom */}
+        <div className="relative z-20 bg-neutral-950 border-t border-neutral-800">
           <Footer />
         </div>
-      </main>
+      </div>
 
       {/* Overlay System */}
       <div 
