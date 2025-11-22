@@ -35,19 +35,22 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-neutral-950 min-h-screen text-white overflow-x-hidden relative selection:bg-white selection:text-black font-sans flex flex-col">
+    <div className="bg-neutral-950 text-white relative selection:bg-white selection:text-black font-sans min-h-screen flex flex-col">
       
       <Header activeSection={activeOverlay || 'home'} onNavigate={handleNavigate} />
       
-      {/* Main Content Area - grows to fill space */}
-      <div className="flex-grow relative">
+      {/* Main Content Area - This will grow and allow scrolling */}
+      <div className="flex-1 relative">
         <main className={`relative transition-all duration-700 ${activeOverlay ? 'scale-95 opacity-50 blur-[2px]' : 'scale-100 opacity-100'}`}>
-          <Hero />
+          {/* Hero section - NOT full screen, allows footer to be visible */}
+          <div className="min-h-[90vh] flex items-center justify-center">
+            <Hero />
+          </div>
         </main>
       </div>
 
-      {/* Footer - Always at bottom */}
-      <div className="relative z-20 border-t border-neutral-800">
+      {/* Footer - Always visible at bottom */}
+      <div className="relative z-20 border-t border-neutral-800 bg-neutral-950">
         <Footer />
       </div>
 
