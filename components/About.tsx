@@ -44,8 +44,8 @@ const About: React.FC = () => {
                 we believe in the transformative power of play at any age.
               </p>
               <p>
-                We partner with visionary cultural institutions and forward-thinking corporations to create bespoke 
-                experiences in VR, AR, and hybrid physical-digital environments.
+                We partner with visionary cultural institutions, collectives and forward-thinking corporations to create bespoke 
+                experiences in VR, AR, and hybrid physical-digital environments. 
               </p>
               
               <div className="flex flex-wrap gap-4 mt-8">
