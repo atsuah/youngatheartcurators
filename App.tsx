@@ -35,19 +35,16 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-neutral-950 text-white selection:bg-white selection:text-black font-sans min-h-screen">
+    <div className="bg-neutral-950 text-white selection:bg-white selection:text-black font-sans min-h-screen overflow-auto">
       
       <Header activeSection={activeOverlay || 'home'} onNavigate={handleNavigate} />
       
       {/* Main Content - Scrollable */}
       <div className="relative">
-        {/* Hero takes ALMOST full viewport height - leaves room for footer */}
-        <div className="min-h-[90vh]">
+        {/* Hero section */}
+        <div className="h-screen">
           <Hero />
         </div>
-        
-        {/* Spacer to ensure footer is visible and creates scrollable area */}
-        <div className="h-20"></div>
         
         {/* Footer comes after hero - requires scrolling to see */}
         <div className="relative z-20 border-t border-neutral-800 bg-neutral-950">
