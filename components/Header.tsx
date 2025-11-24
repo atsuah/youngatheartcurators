@@ -19,23 +19,19 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
     setIsMobileMenuOpen(false);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-[60] py-8 px-6 md:px-12">
+    <header className="fixed top-0 left-0 right-0 z-[60] py-4 md:py-6 px-6 md:px-12 bg-neutral-950/95 backdrop-blur-md border-b border-neutral-800">
       <div className="container mx-auto flex justify-between items-center">
         
-        <button onClick={() => handleNavClick('about')} className="flex items-center gap-3 group outline-none">
+        <button onClick={() => handleNavClick('about')} className="flex items-center gap-2 md:gap-3 group outline-none">
           <div className="bg-white/10 p-1 rounded-lg backdrop-blur-sm">
             <img 
               src="/images/logo.png"
               alt="Young At Heart Curators Logo"
-              className="w-10 h-10 object-cover rounded-lg transition-transform duration-500 group-hover:rotate-180"
+              className="w-8 h-8 md:w-10 md:h-10 object-cover rounded-lg transition-transform duration-500 group-hover:rotate-180"
             />
           </div>
-          <span className="font-display font-bold text-xl tracking-tighter text-white mix-blend-difference">YOUNG AT HEART CURATORS</span>
+          <span className="font-display font-bold text-lg md:text-xl tracking-tighter text-white">Y.A.H CURATORS</span>
         </button>
 
         <nav className="hidden md:flex items-center gap-2 bg-black/20 backdrop-blur-md p-1.5 rounded-full border border-white/5">
@@ -58,25 +54,24 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
           className="md:hidden text-white p-2 bg-black/20 backdrop-blur-md rounded-full border border-white/10"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
 
-        {/* Mobile Menu Overlay */}
         <div className={`fixed inset-0 h-screen w-screen bg-neutral-950/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] z-[70] ${
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-10'
         }`}>
            <button 
-              className="absolute top-8 right-6 text-white/50 hover:text-white"
-              onClick={closeMobileMenu}
+              className="absolute top-6 right-4 text-white/50 hover:text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
            >
-              <X size={32} />
+              <X size={28} />
            </button>
            
            {navItems.map((item) => (
             <button 
               key={item.label} 
               onClick={() => handleNavClick(item.id)}
-              className={`font-display text-5xl font-bold transition-all duration-300 ${
+              className={`font-display text-4xl font-bold transition-all duration-300 ${
                 activeSection === item.id ? 'text-white scale-110' : 'text-neutral-600 hover:text-white'
               }`}
             >
