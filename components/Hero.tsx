@@ -8,11 +8,11 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center relative py-16 md:py-0 px-6 md:px-8">
+    <div className="w-full flex items-center justify-center relative py-16 md:py-24 px-6 md:px-8">
       <div className="max-w-6xl mx-auto w-full">
-        
+
         <div 
-          className="w-full h-[70vh] md:h-[80vh] relative overflow-hidden bg-black rounded-sm group mx-auto cursor-pointer md:cursor-auto"
+          className="w-full h-auto relative overflow-hidden bg-black rounded-sm group mx-auto cursor-pointer md:cursor-auto"
           onClick={handleReveal}
         >
 
@@ -46,6 +46,7 @@ const Hero: React.FC = () => {
               <span className="hidden md:block">SCROLL TO EXPLORE</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
