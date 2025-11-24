@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, ArrowRight, Send, User, Building, MessageCircle } from 'lucide-react';
+import { Mail, ArrowRight, Send, User, Building, MessageCircle, Calendar, Users, MapPin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
@@ -9,6 +9,9 @@ const Contact: React.FC = () => {
     email: '',
     company: '',
     projectType: '',
+    timeline: '',
+    budget: '',
+    participants: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +23,6 @@ const Contact: React.FC = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear error when user starts typing again
     if (error) setError(null);
   };
 
@@ -30,20 +32,24 @@ const Contact: React.FC = () => {
     setError(null);
     
     try {
-      // Replace these with your actual EmailJS credentials
+      // Replace with your actual EmailJS credentials
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS Service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS Template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          company: formData.company,
-          project_type: formData.projectType,
-          message: formData.message,
-          to_email: 'hello@youngatheartcurators.com'
-        },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS Public Key
-      );
+  'mail.privateemail.com', // Your Service ID
+  'template_qxe650e', // Your Template ID
+  {
+    from_name: formData.name,
+    from_email: formData.email,
+    company: formData.company,
+    project_type: formData.projectType,
+    timeline: formData.timeline,
+    budget: formData.budget,
+    participants: formData.participants,
+    message: formData.message,
+    to_email: 'hello@youngatheartcurators.com',
+    date: new Date().toLocaleDateString()
+  },
+  'lCIynk_Q6VxaMBMix' // ← Replace this with your Public Key
+);
 
       if (result.status === 200) {
         setIsSubmitted(true);
@@ -52,6 +58,9 @@ const Contact: React.FC = () => {
           email: '',
           company: '',
           projectType: '',
+          timeline: '',
+          budget: '',
+          participants: '',
           message: ''
         });
       }
@@ -65,11 +74,32 @@ const Contact: React.FC = () => {
 
   const projectTypes = [
     'Corporate Team Building',
-    'Art & Cultural Exhibition',
+    'Leadership Development',
     'Product Launch Experience',
-    'Brand Activation',
-    'Training & Development',
+    'Brand Activation Event',
+    'Art & Cultural Exhibition',
+    'Museum/Gallery Installation',
+    'Conference/Summit Activation',
+    'Training & Development Program',
+    'Marketing Campaign',
     'Other'
+  ];
+
+  const timelines = [
+    'Urgent (Within 2 weeks)',
+    'Soon (1-2 months)',
+    'Planning (3-6 months)',
+    'Future (6+ months)',
+    'Just exploring'
+  ];
+
+  const budgetRanges = [
+    'Under €5,000',
+    '€5,000 - €15,000',
+    '€15,000 - €30,000',
+    '€30,000 - €50,000',
+    '€50,000+',
+    'To be discussed'
   ];
 
   return (
@@ -83,9 +113,13 @@ const Contact: React.FC = () => {
         </div>
 
         <h2 className="font-display text-3xl md:text-6xl lg:text-7xl font-bold text-white tracking-tighter mb-6 md:mb-8 leading-tight">
-          TELL US ABOUT <br />
-          YOUR <span className="text-neutral-700">VISION.</span>
+          LET'S CREATE <br />
+          <span className="text-neutral-700">TOGETHER.</span>
         </h2>
+
+        <p className="text-neutral-400 text-lg mb-12 max-w-2xl mx-auto">
+          Tell us about your vision and we'll craft an immersive experience that brings it to life.
+        </p>
 
         <div className="flex justify-center">
           {!isRevealed ? (
@@ -94,7 +128,7 @@ const Contact: React.FC = () => {
               className="group relative px-6 py-3 md:px-8 md:py-4 bg-white text-black font-bold text-sm tracking-widest overflow-hidden rounded-sm transition-all hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">
-                START THE CONVERSATION <ArrowRight size={16} />
+                START YOUR PROJECT <ArrowRight size={16} />
               </span>
               <div className="absolute inset-0 bg-neutral-300 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
             </button>
@@ -104,12 +138,12 @@ const Contact: React.FC = () => {
                 <div className="w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Send size={24} className="text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Project Inquiry Sent!</h3>
                 <p className="text-neutral-400 text-sm mb-2">
-                  Thank you, {formData.name}. We've received your inquiry about {formData.projectType.toLowerCase()}.
+                  Thank you, <strong>{formData.name}</strong>. We're excited about your {formData.projectType.toLowerCase()} project.
                 </p>
                 <p className="text-neutral-400 text-sm">
-                  We'll get back to you at <strong>{formData.email}</strong> within 24 hours.
+                  We'll review your details and contact you at <strong>{formData.email}</strong> within 24 hours.
                 </p>
               </div>
               <button 
@@ -119,18 +153,19 @@ const Contact: React.FC = () => {
                 }}
                 className="text-neutral-500 hover:text-white transition-colors text-sm"
               >
-                Send another message
+                Submit another inquiry
               </button>
             </div>
           ) : (
-            <div className="animate-fade-in w-full max-w-2xl mx-auto">
+            <div className="animate-fade-in w-full max-w-4xl mx-auto">
               {error && (
                 <div className="bg-red-900/20 border border-red-900/50 rounded-lg p-4 mb-6">
                   <p className="text-red-400 text-sm">{error}</p>
                 </div>
               )}
               
-              <form onSubmit={handleSubmit} className="space-y-6 text-left">
+              <form onSubmit={handleSubmit} className="space-y-8 text-left">
+                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
@@ -176,27 +211,85 @@ const Contact: React.FC = () => {
                     value={formData.company}
                     onChange={handleInputChange}
                     className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
-                    placeholder="Your company name"
+                    placeholder="Your company or organization name"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
-                    <MessageCircle size={14} />
-                    What are you looking to create? *
-                  </label>
-                  <select
-                    name="projectType"
-                    value={formData.projectType}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
-                  >
-                    <option value="">Select a project type</option>
-                    {projectTypes.map(type => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
+                {/* Project Details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                      <MessageCircle size={14} />
+                      Project Type *
+                    </label>
+                    <select
+                      name="projectType"
+                      value={formData.projectType}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                    >
+                      <option value="">What type of experience?</option>
+                      {projectTypes.map(type => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                      <Calendar size={14} />
+                      Timeline *
+                    </label>
+                    <select
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                    >
+                      <option value="">When do you need this?</option>
+                      {timelines.map(time => (
+                        <option key={time} value={time}>{time}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                      <MapPin size={14} />
+                      Budget Range *
+                    </label>
+                    <select
+                      name="budget"
+                      value={formData.budget}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                    >
+                      <option value="">What's your budget range?</option>
+                      {budgetRanges.map(range => (
+                        <option key={range} value={range}>{range}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                      <Users size={14} />
+                      Expected Participants
+                    </label>
+                    <input
+                      type="text"
+                      name="participants"
+                      value={formData.participants}
+                      onChange={handleInputChange}
+                      className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
+                      placeholder="e.g., 50 people, entire company, public event"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -208,9 +301,9 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={4}
+                    rows={6}
                     className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors resize-none"
-                    placeholder="Describe your project, goals, timeline, and any specific requirements..."
+                    placeholder="Describe your project goals, target audience, desired outcomes, location requirements, and any specific ideas or inspiration..."
                   />
                 </div>
 
@@ -227,14 +320,19 @@ const Contact: React.FC = () => {
                   ) : (
                     <>
                       <Send size={16} />
-                      SEND TO HELLO@YOUNGATHEARTCURATORS.COM
+                      SEND PROJECT INQUIRY
                     </>
                   )}
                 </button>
 
-                <p className="text-neutral-600 text-xs text-center">
-                  This message will be sent directly to hello@youngatheartcurators.com
-                </p>
+                <div className="text-center space-y-2">
+                  <p className="text-neutral-600 text-xs">
+                    This inquiry will be sent directly to hello@youngatheartcurators.com
+                  </p>
+                  <p className="text-neutral-500 text-xs">
+                    Based in Stockholm • Available worldwide
+                  </p>
+                </div>
               </form>
             </div>
           )}
