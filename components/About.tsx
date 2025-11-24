@@ -2,7 +2,8 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-20 md:py-0 px-6 md:px-8">
+   // In About.tsx, ensure the main container has:
+<div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-16 md:py-0 px-6 md:px-8">
       <div className="max-w-4xl mx-auto w-full mt-8 md:mt-0">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           
