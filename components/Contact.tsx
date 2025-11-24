@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, ArrowRight, Send, User, Building, MessageCircle } from 'lucide-react';
-
-// You'll need to install: npm install emailjs-com
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -14,44 +13,53 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear error when user starts typing again
+    if (error) setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
     try {
-      // This will be your EmailJS integration
-      // For now, we'll simulate success
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // TODO: Replace with actual EmailJS send
-      // await emailjs.send(
-      //   'YOUR_SERVICE_ID',
-      //   'YOUR_TEMPLATE_ID',
-      //   formData,
-      //   'YOUR_PUBLIC_KEY'
-      // );
-      
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectType: '',
-        message: ''
-      });
+      // Replace these with your actual EmailJS credentials
+      const result = await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS Service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company,
+          project_type: formData.projectType,
+          message: formData.message,
+          to_email: 'hello@youngatheartcurators.com'
+        },
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS Public Key
+      );
+
+      if (result.status === 200) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          projectType: '',
+          message: ''
+        });
+      }
     } catch (error) {
       console.error('Error sending email:', error);
+      setError('Sorry, there was an error sending your message. Please try again or email us directly at hello@youngatheartcurators.com');
+    } finally {
       setIsSubmitting(false);
-      // Handle error state here
     }
   };
 
@@ -96,9 +104,12 @@ const Contact: React.FC = () => {
                 <div className="w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Send size={24} className="text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Thank You!</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-neutral-400 text-sm mb-2">
+                  Thank you, {formData.name}. We've received your inquiry about {formData.projectType.toLowerCase()}.
+                </p>
                 <p className="text-neutral-400 text-sm">
-                  We've received your message and will get back to you within 24 hours at {formData.email}.
+                  We'll get back to you at <strong>{formData.email}</strong> within 24 hours.
                 </p>
               </div>
               <button 
@@ -113,6 +124,12 @@ const Contact: React.FC = () => {
             </div>
           ) : (
             <div className="animate-fade-in w-full max-w-2xl mx-auto">
+              {error && (
+                <div className="bg-red-900/20 border border-red-900/50 rounded-lg p-4 mb-6">
+                  <p className="text-red-400 text-sm">{error}</p>
+                </div>
+              )}
+              
               <form onSubmit={handleSubmit} className="space-y-6 text-left">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -205,7 +222,7 @@ const Contact: React.FC = () => {
                   {isSubmitting ? (
                     <>
                       <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      Sending to our team...
                     </>
                   ) : (
                     <>
@@ -216,7 +233,7 @@ const Contact: React.FC = () => {
                 </button>
 
                 <p className="text-neutral-600 text-xs text-center">
-                  This message will be sent directly to our team
+                  This message will be sent directly to hello@youngatheartcurators.com
                 </p>
               </form>
             </div>
