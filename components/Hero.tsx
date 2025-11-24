@@ -38,15 +38,6 @@ const Hero: React.FC = () => {
               WONDER.
             </h1>
           </div>
-
-          <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-10">
-            <div className="flex flex-col items-end text-right text-xs font-mono text-neutral-400">
-              <span>EST. 2025</span>
-              <span className="hidden md:block">VR / AR / MR / IRL</span>
-              <span className="hidden md:block">SCROLL TO EXPLORE</span>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
