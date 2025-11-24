@@ -2,9 +2,8 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-   // In About.tsx, ensure the main container has:
-<div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-16 md:py-0 px-6 md:px-8">
-      <div className="max-w-4xl mx-auto w-full mt-8 md:mt-0">
+    <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-8 md:py-0 px-6 md:px-8">
+      <div className="max-w-4xl mx-auto w-full">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           
           <div className="w-full md:w-1/3 shrink-0">
@@ -28,9 +27,9 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-2/3 pb-8 md:pb-0">
+          <div className="w-full md:w-2/3">
             <p className="text-xl md:text-3xl lg:text-4xl font-light leading-tight text-neutral-200 mb-8">
-              We are Young At Heart Curators. We are a team of disruptors, designers, developers and storytellers based in Sweden. We curate experiences that reignite wonder and forge deeper connections. 
+              We curate experiences that reignite wonder and forge deeper connections. 
               <span className="text-neutral-600"> Where technology meets imagination, and play becomes progress.</span>
             </p>
             
@@ -44,8 +43,8 @@ const About: React.FC = () => {
                 we believe in the transformative power of play at any age.
               </p>
               <p>
-                We partner with visionary cultural institutions, collectives and forward-thinking corporations to create bespoke 
-                experiences in VR, AR, and hybrid physical-digital environments. 
+                We partner with visionary cultural institutions and forward-thinking corporations to create bespoke 
+                experiences in VR, AR, and hybrid physical-digital environments.
               </p>
               
               <div className="flex flex-wrap gap-4 mt-8">
