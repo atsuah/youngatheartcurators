@@ -30,7 +30,7 @@ const About: React.FC = () => {
 
           <div className="w-full md:w-2/3 pb-8 md:pb-0">
             <p className="text-xl md:text-3xl lg:text-4xl font-light leading-tight text-neutral-200 mb-8">
-              We curate experiences that reignite wonder and forge deeper connections. 
+              We are Young At Heart Curators. We are a team of disruptors, designers, developers and storytellers based in Sweden. We curate experiences that reignite wonder and forge deeper connections. 
               <span className="text-neutral-600"> Where technology meets imagination, and play becomes progress.</span>
             </p>
             
