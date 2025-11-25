@@ -163,7 +163,6 @@ const Contact: React.FC = () => {
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-8 text-left">
-              {/* Rest of your contact form remains the same */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
@@ -198,8 +197,112 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Rest of form fields... */}
-              
+              <div className="space-y-2">
+                <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                  <Building size={14} />
+                  Company / Organization
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
+                  placeholder="Your company or organization name"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                    <MessageCircle size={14} />
+                    Project Type *
+                  </label>
+                  <select
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                  >
+                    <option value="">What type of experience?</option>
+                    {projectTypes.map(type => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                    <Calendar size={14} />
+                    Timeline *
+                  </label>
+                  <select
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                  >
+                    <option value="">When do you need this?</option>
+                    {timelines.map(time => (
+                      <option key={time} value={time}>{time}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                    <MapPin size={14} />
+                    Budget Range *
+                  </label>
+                  <select
+                    name="budget"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-neutral-600 transition-colors"
+                  >
+                    <option value="">What's your budget range?</option>
+                    {budgetRanges.map(range => (
+                      <option key={range} value={range}>{range}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-neutral-400 text-sm font-medium flex items-center gap-2">
+                    <Users size={14} />
+                    Expected Participants
+                  </label>
+                  <input
+                    type="text"
+                    name="participants"
+                    value={formData.participants}
+                    onChange={handleInputChange}
+                    className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors"
+                    placeholder="e.g., 50 people, entire company, public event"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-neutral-400 text-sm font-medium">
+                  Tell us about your vision *
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className="w-full bg-neutral-900 border border-neutral-800 rounded-sm px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-600 transition-colors resize-none"
+                  placeholder="Describe your project goals, target audience, desired outcomes, location requirements, and any specific ideas or inspiration..."
+                />
+              </div>
+
               <button
                 type="submit"
                 disabled={isSubmitting}
