@@ -8,10 +8,10 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center px-2 md:px-12">
+    <div className="w-full h-full flex items-center justify-center px-2 md:px-12 pt-16"> {/* Added pt-16 for header spacing */}
       
       <div 
-        className="w-full max-w-6xl h-[55dvh] md:h-[70vh] relative overflow-hidden bg-black rounded-sm group mx-auto cursor-pointer md:cursor-auto"
+        className="w-full max-w-6xl h-[55vh] md:h-[70vh] relative overflow-hidden bg-black rounded-sm group mx-auto cursor-pointer md:cursor-auto"
         onClick={handleReveal}
       >
         

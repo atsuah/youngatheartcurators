@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto pt-20 md:pt-0 pb-8 md:pb-0 px-6 md:px-8">
+   <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-16 md:py-0 px-6 md:px-8 pt-20">
       <div className="max-w-4xl mx-auto w-full mt-8 md:mt-0">
         
         {!isRevealed ? (
