@@ -2,8 +2,8 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto py-8 md:py-0 px-6 md:px-8">
-      <div className="max-w-4xl mx-auto w-full">
+    <div className="min-h-screen w-full flex items-start md:items-center justify-start md:justify-center relative overflow-auto pt-20 md:pt-0 pb-8 md:pb-0 px-6 md:px-8">
+      <div className="max-w-4xl mx-auto w-full mt-8 md:mt-0">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           
           <div className="w-full md:w-1/3 shrink-0">
@@ -12,14 +12,6 @@ const About: React.FC = () => {
               WHO WE ARE
             </h2>
             
-            <div className="mb-6">
-              <img 
-                src="/images/logo.png"
-                alt="Young At Heart Curators Logo"
-                className="w-16 h-16 md:w-24 md:h-24 object-cover rounded-lg"
-              />
-            </div>
-            
             <div className="text-xs font-mono text-neutral-600 space-y-2">
                 <p>EST. 2025</p>
                 <p>VR / AR / MR / IRL</p>
@@ -27,10 +19,10 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-2/3">
+          <div className="w-full md:w-2/3 pb-8 md:pb-0">
             <p className="text-xl md:text-3xl lg:text-4xl font-light leading-tight text-neutral-200 mb-8">
-              We curate experiences that reignite wonder and forge deeper connections. 
-              <span className="text-neutral-600"> Where technology meets imagination, and play becomes progress.</span>
+              We are Young At Heart, a team of disruptors, dreamers, designers and developers. We curate experiences that reignite wonder and forge deeper connections. 
+              <span className="text-neutral-600"> Where immersive technology meets imagination, and play becomes inevitable.</span>
             </p>
             
             <div className="text-neutral-400 font-sans text-base leading-relaxed space-y-6">
@@ -43,11 +35,11 @@ const About: React.FC = () => {
                 we believe in the transformative power of play at any age.
               </p>
               <p>
-                We partner with visionary cultural institutions and forward-thinking corporations to create bespoke 
+                We partner with visionary cultural institutions, collectives, galleries and forward-thinking corporations to create bespoke 
                 experiences in VR, AR, and hybrid physical-digital environments.
               </p>
               
-              <div className="flex flex-wrap gap-4 mt-8">
+              <div className="flex gap-4 mt-8">
                   {['VR/AR/MR Development', 'Experience Design', 'Creative Strategy'].map(tag => (
                       <span key={tag} className="px-4 py-2 rounded-full border border-neutral-800 text-sm text-neutral-500">
                           {tag}
