@@ -34,17 +34,21 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-neutral-950 text-white selection:bg-white selection:text-black font-sans h-screen flex flex-col">
+    <div className="bg-neutral-950 text-white selection:bg-white selection:text-black font-sans min-h-screen">
 
       <Header activeSection={activeOverlay || 'home'} onNavigate={handleNavigate} />
 
-      {/* Main Content - grows to fill space between header and footer */}
-      <div className="flex-1 flex items-center justify-center">
-        <Hero />
-      </div>
+      {/* Main Content with safe area for fixed header */}
+      <div className="relative pt-16 md:pt-20"> {/* Added top padding */}
 
-      {/* Fixed Footer - always at bottom */}
-      <Footer />
+        {/* Hero */}
+        <Hero />
+
+        {/* Footer */}
+        <div className="relative z-20 border-t border-neutral-800 bg-neutral-950">
+          <Footer />
+        </div>
+      </div>
 
       {/* Overlay System */}
       <div 

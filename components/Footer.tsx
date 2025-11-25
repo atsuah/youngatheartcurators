@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
     <footer className="fixed bottom-0 left-0 w-full z-50 bg-neutral-950 border-t border-neutral-800">
       <div className="container mx-auto px-4 md:px-12 py-3 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
         <div className="text-neutral-600 text-xs font-mono text-center md:text-left">
-          &copy;2025 YOUNG AT HEART CURATORS. ALL RIGHTS RESERVED.
+          &copy; 2025 YOUNG AT HEART CURATORS. ALL RIGHTS RESERVED.
         </div>
 
         <div className="flex gap-4 md:gap-6">

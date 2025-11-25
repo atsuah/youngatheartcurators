@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
               className="w-8 h-8 md:w-10 md:h-10 object-cover rounded-lg transition-transform duration-500 group-hover:rotate-180"
             />
           </div>
-          <span className="font-display font-bold text-lg md:text-xl tracking-tighter text-white">Y.A.H CURATORS</span>
+          <span className="font-display font-bold text-lg md:text-xl tracking-tighter text-white">YOUNG AT HEART CURATORS</span>
         </button>
 
         <nav className="hidden md:flex items-center gap-2 bg-black/20 backdrop-blur-md p-1.5 rounded-full border border-white/5">
